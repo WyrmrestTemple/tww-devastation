@@ -63,12 +63,11 @@ actions.aoe+=/deep_breath,if=!buff.dragonrage.up&essence.deficit>3
 actions.aoe+=/shattering_star,target_if=max:target.health.pct,if=buff.essence_burst.stack<buff.essence_burst.max_stack&talent.arcane_vigor|talent.eternitys_span&active_enemies<=3
 actions.aoe+=/engulf,if=dot.fire_breath_damage.ticking&(!talent.shattering_star|debuff.shattering_star_debuff.up)&cooldown.dragonrage.remains>=27
 # Use Charged Blast stacks if Mass Dis would overcap
-actions.aoe+=/pyre,target_if=max:target.health.pct,if=buff.mass_disintegrate_stacks.up&talent.charged_blast&buff.charged_blast.stack>=12
-actions.aoe+=/disintegrate,target_if=min:debuff.bombardments.remains,if=buff.mass_disintegrate_stacks.up&talent.mass_disintegrate
-# Pyre logic Pyre 4T+ Pyre 3T+ if playing Volatility Pyre with 15 stacks of CB
-actions.aoe+=/pyre,target_if=max:target.health.pct,if=active_enemies>=4&!variable.pool_for_id
-actions.aoe+=/pyre,target_if=max:target.health.pct,if=active_enemies>=3&talent.volatility&!variable.pool_for_id
-actions.aoe+=/pyre,target_if=max:target.health.pct,if=buff.charged_blast.stack>=15
+actions.aoe+=/disintegrate,target_if=min:debuff.bombardments.remains,if=buff.mass_disintegrate_stacks.up&talent.mass_disintegrate&(buff.charged_blast.stack<10|!talent.charged_blast)
+# Pyre logic Pyre 4T+ Pyre 3T+ if playing Volatility Pyre with 15 stacks of CB Pool CB for DR
+actions.aoe+=/pyre,target_if=max:target.health.pct,if=active_enemies>=4&!variable.pool_for_id&(cooldown.dragonrage.remains>gcd.max*4|!talent.charged_blast)
+actions.aoe+=/pyre,target_if=max:target.health.pct,if=active_enemies>=3&talent.volatility&!variable.pool_for_id&(cooldown.dragonrage.remains>gcd.max*4|!talent.charged_blast)
+actions.aoe+=/pyre,target_if=max:target.health.pct,if=buff.charged_blast.stack>=15&(cooldown.dragonrage.remains>gcd.max*4)
 # Cast LF with leaping flames up if: not playing burnout, burnout is up or the next firebreath is soon.
 actions.aoe+=/living_flame,target_if=max:target.health.pct,if=(!talent.burnout|buff.burnout.up|cooldown.fire_breath.remains<=gcd.max*5|buff.scarlet_adaptation.up|buff.ancient_flame.up)&buff.leaping_flames.up&!buff.essence_burst.up&essence.deficit>1
 # Yoinked the disintegrate logic from ST
