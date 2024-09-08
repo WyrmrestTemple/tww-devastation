@@ -65,7 +65,7 @@ actions.aoe+=/engulf,if=dot.fire_breath_damage.ticking&(!talent.shattering_star|
 # Use Charged Blast stacks if Mass Dis would overcap
 actions.aoe+=/disintegrate,target_if=min:debuff.bombardments.remains,if=buff.mass_disintegrate_stacks.up&talent.mass_disintegrate&(buff.charged_blast.stack<10|!talent.charged_blast)
 # Pyre logic Pyre 4T+ Pyre 3T+ if playing Volatility Pyre with 12 stacks of CB
-actions.aoe+=/pyre,target_if=max:target.health.pct,if=(active_enemies>=4|talent.volatility)&(cooldown.dragonrage.remains>gcd.max*4|!talent.charged_blast|talent.engulf)&!variable.pool_for_id
+actions.aoe+=/pyre,target_if=max:target.health.pct,if=(active_enemies>=4|talent.volatility)&(cooldown.dragonrage.remains>gcd.max*4|!talent.charged_blast|talent.engulf&(!talent.arcane_intensity|!talent.eternitys_span))&!variable.pool_for_id
 actions.aoe+=/pyre,target_if=max:target.health.pct,if=buff.charged_blast.stack>=12&(cooldown.dragonrage.remains>gcd.max*4)
 # Cast LF with leaping flames up if: not playing burnout, burnout is up or the next firebreath is soon.
 actions.aoe+=/living_flame,target_if=max:target.health.pct,if=(!talent.burnout|buff.burnout.up|cooldown.fire_breath.remains<=gcd.max*5|buff.scarlet_adaptation.up|buff.ancient_flame.up)&buff.leaping_flames.up&!buff.essence_burst.up&essence.deficit>1
