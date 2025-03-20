@@ -72,10 +72,7 @@ actions.aoe+=/shattering_star,target_if=max:target.health.pct,if=(cooldown.drago
 actions.aoe+=/dragonrage,target_if=max:target.time_to_die,if=target.time_to_die>=32|active_enemies>=3&target.time_to_die>=15|fight_remains<30
 # Cast Fire Breath DS optimization: Only cast if current fight will last 8s+ or encounter ends in less than 30s
 actions.aoe+=/call_action_list,name=fb,if=(!talent.dragonrage|buff.dragonrage.up|cooldown.dragonrage.remains>variable.dr_prep_time_aoe|!talent.animosity|talent.flame_siphon)&(target.time_to_die>=8|talent.mass_disintegrate)
-# Eternity Surge logic. Play around blazing shards if outside of DR. DS optimization: Only cast if current fight will last 8s+ or encounter ends in less than 30s
-# BaumChange ST #1: Pruned some of the duplicate conditions and added the var ES_Send_Threshold for testing
-actions.st+=/call_action_list,name=es,if=(!talent.dragonrage|variable.next_dragonrage>variable.dr_prep_time_st|!talent.animosity|talent.mass_disintegrate)&(!set_bonus.tww2_4pc|!buff.jackpot.up|variable.es_send_threshold<=cooldown.fire_breath.remains|talent.mass_disintegrate)&(!talent.power_swell|buff.power_swell.remains<=gcd.max)
-# Cast DB if not in DR and not going to overflow essence.
+actions.aoe+=/call_action_list,name=es,if=(!talent.dragonrage|buff.dragonrage.up|cooldown.dragonrage.remains>variable.dr_prep_time_aoe|!talent.animosity)&(!buff.jackpot.up|!set_bonus.tww2_4pc|talent.mass_disintegrate)
 actions.aoe+=/deep_breath,if=!buff.dragonrage.up&essence.deficit>3
 # Send SS when it doesn't overflow EB, without vigor send on CD
 # BaumChange 3: Save SS for Engulf - +20k in 5T 
